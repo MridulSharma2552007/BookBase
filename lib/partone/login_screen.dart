@@ -19,6 +19,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
       if (googleUser == null) {
+        if (!mounted) return;
         ScaffoldMessenger.of(context).showMaterialBanner(
           MaterialBanner(
             content: const Text('Sign in aborted by user'),
@@ -136,9 +137,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         signInWIthGoogle();
-                        print('Clicked on Sign In with Google');
                       },
-                      label: Text(
+                      label: const Text(
                         'Sign In with Google',
                         style: TextStyle(
                           color: AppColors.primary,
