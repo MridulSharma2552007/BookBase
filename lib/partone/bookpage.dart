@@ -16,9 +16,9 @@ class _BookpageState extends State<Bookpage> {
 
   void semname() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    sem = prefs.getString('sem')!;
+    String? storedSem = prefs.getString('sem')!;
     setState(() {
-      sem = sem;
+      sem = storedSem;
     });
   }
 
@@ -43,23 +43,30 @@ class _BookpageState extends State<Bookpage> {
         ),
         centerTitle: true,
       ),
-      body: Container(
-        height: 100,
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: AppColors.secondary, width: 2),
-          ),
-          color: AppColors.primary,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
+      body: Column(children: [topcontaine()]),
+    );
+  }
+
+  Container topcontaine() {
+    return Container(
+      height: 100,
+      decoration: BoxDecoration(
+        border: Border(
+          bottom: BorderSide(color: AppColors.secondary, width: 2),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 20,
-              left: 20,
+        color: AppColors.primary,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      child: Stack(
+        children: [
+          Positioned(
+            bottom: 20,
+            left: 20,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   GestureDetector(
@@ -69,19 +76,30 @@ class _BookpageState extends State<Bookpage> {
                       });
                     },
 
-                    child: Text(
-                      'Books',
-                      style: firstSelected
-                          ? GoogleFonts.plusJakartaSans(
-                              color: AppColors.secondary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            )
-                          : GoogleFonts.plusJakartaSans(
-                              color: AppColors.secondary.withOpacity(0.6),
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                            ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Books',
+                          style: firstSelected
+                              ? GoogleFonts.plusJakartaSans(
+                                  color: AppColors.secondary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                )
+                              : GoogleFonts.plusJakartaSans(
+                                  color: AppColors.secondary.withOpacity(0.6),
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                ),
+                        ),
+                        if (firstSelected)
+                          Container(
+                            margin: EdgeInsets.only(top: 5),
+                            width: 50,
+                            height: 3,
+                            color: AppColors.secondary,
+                          ),
+                      ],
                     ),
                   ),
                   SizedBox(width: 20),
@@ -91,26 +109,37 @@ class _BookpageState extends State<Bookpage> {
                         firstSelected = false;
                       });
                     },
-                    child: Text(
-                      'Question Papers',
-                      style: firstSelected
-                          ? GoogleFonts.plusJakartaSans(
-                              color: AppColors.secondary.withOpacity(0.6),
-                              fontWeight: FontWeight.normal,
-                              fontSize: 20,
-                            )
-                          : GoogleFonts.plusJakartaSans(
-                              color: AppColors.secondary,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Question Papers',
+                          style: firstSelected
+                              ? GoogleFonts.plusJakartaSans(
+                                  color: AppColors.secondary.withOpacity(0.6),
+                                  fontWeight: FontWeight.normal,
+                                  fontSize: 20,
+                                )
+                              : GoogleFonts.plusJakartaSans(
+                                  color: AppColors.secondary,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                ),
+                        ),
+                        if (!firstSelected)
+                          Container(
+                            margin: EdgeInsets.only(top: 5),
+                            width: 120,
+                            height: 3,
+                            color: AppColors.secondary,
+                          ),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
