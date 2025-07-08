@@ -21,6 +21,17 @@ class _SelectionScreenState extends State<SelectionScreen> {
     prefs.setString('sem', sem);
   }
 
+  Future<void> bypassLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isLoggedIn', true);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    bypassLogin();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

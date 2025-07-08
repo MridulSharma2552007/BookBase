@@ -29,10 +29,13 @@ class _BookpageState extends State<Bookpage> {
   }
 
   @override
+
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.primary, // calming and soft on eyes
+
       appBar: AppBar(
-        backgroundColor: AppColors.primary,
+        backgroundColor: const Color(0xffE7EEF0),
         title: Text(
           sem,
           style: GoogleFonts.plusJakartaSans(
@@ -43,7 +46,8 @@ class _BookpageState extends State<Bookpage> {
         ),
         centerTitle: true,
       ),
-      body: Column(children: [topcontaine()]),
+      body: Column(children: [topcontaine(),
+      ]),
     );
   }
 
@@ -54,7 +58,7 @@ class _BookpageState extends State<Bookpage> {
         border: Border(
           bottom: BorderSide(color: AppColors.secondary, width: 2),
         ),
-        color: AppColors.primary,
+        color: const Color(0xffE7EEF0),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
@@ -87,7 +91,9 @@ class _BookpageState extends State<Bookpage> {
                                   fontSize: 20,
                                 )
                               : GoogleFonts.plusJakartaSans(
-                                  color: AppColors.secondary.withOpacity(0.6),
+                                  color: AppColors.secondary.withValues(
+                                    alpha: 0.6,
+                                  ),
                                   fontWeight: FontWeight.normal,
                                   fontSize: 20,
                                 ),
@@ -115,7 +121,9 @@ class _BookpageState extends State<Bookpage> {
                           'Question Papers',
                           style: firstSelected
                               ? GoogleFonts.plusJakartaSans(
-                                  color: AppColors.secondary.withOpacity(0.6),
+                                  color: AppColors.secondary.withValues(
+                                    alpha: 0.6,
+                                  ),
                                   fontWeight: FontWeight.normal,
                                   fontSize: 20,
                                 )
