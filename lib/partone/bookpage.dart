@@ -1,3 +1,4 @@
+import 'package:book_base/bookcontainer/book_container.dart';
 import 'package:book_base/colors/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +30,6 @@ class _BookpageState extends State<Bookpage> {
   }
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primary, // calming and soft on eyes
@@ -46,8 +46,29 @@ class _BookpageState extends State<Bookpage> {
         ),
         centerTitle: true,
       ),
-      body: Column(children: [topcontaine(),
-      ]),
+      body: Column(
+        children: [
+          topcontaine(),
+          firstSelected
+              ? Expanded(child: Column(
+                children: [
+                  BookContainer(
+                  imagePath: 'assets/booksimages/sem1-maths.png',
+                  title: 'Mathematics - 1',
+                  description:
+                      'This book covers differential calculus and algebra for Semester 1 students.',
+                ),
+                BookContainer(
+                  imagePath: 'assets/booksimages/sem1-maths.png',
+                  title: 'Mathematics - 1',
+                  description:
+                      'This book covers differential calculus and algebra for Semester 1 students.',
+                )
+                ],
+              ))
+              : CircularProgressIndicator(),
+        ],
+      ),
     );
   }
 
