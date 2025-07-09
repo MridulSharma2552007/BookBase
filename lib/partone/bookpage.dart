@@ -32,7 +32,7 @@ class _BookpageState extends State<Bookpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary, // calming and soft on eyes
+      backgroundColor: AppColors.primary,
 
       appBar: AppBar(
         backgroundColor: const Color(0xffE7EEF0),
@@ -50,23 +50,25 @@ class _BookpageState extends State<Bookpage> {
         children: [
           topcontaine(),
           firstSelected
-              ? Expanded(child: Column(
-                children: [
-                  BookContainer(
-                  imagePath: 'assets/booksimages/sem1-maths.png',
-                  title: 'Mathematics - 1',
-                  description:
-                      'This book covers differential calculus and algebra for Semester 1 students.',
-                ),
-                BookContainer(
-                  imagePath: 'assets/booksimages/sem1-maths.png',
-                  title: 'Mathematics - 1',
-                  description:
-                      'This book covers differential calculus and algebra for Semester 1 students.',
+              ? Expanded(
+                  child: Column(
+                    children: [
+                      BookContainer(
+                        imagePath: 'assets/booksimages/sem1-maths.png',
+                        title: 'Mathematics - 1',
+                        description:
+                            'This book covers differential calculus and algebra for Semester 1 students.',
+                      ),
+                      BookContainer(
+                        imagePath: 'assets/booksimages/sem1-maths.png',
+                        title: 'Mathematics - 1',
+                        description:
+                            'This book covers differential calculus and algebra for Semester 1 students.',
+                      ),
+                    ],
+                  ),
                 )
-                ],
-              ))
-              : CircularProgressIndicator(),
+              : Center(child: CircularProgressIndicator()),
         ],
       ),
     );
