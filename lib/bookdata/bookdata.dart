@@ -6,7 +6,7 @@ Map<String, List<BookModel>> bookData = {
       title: 'Computer Fundamental',
       author: 'Author',
       description: 'description',
-      imageUrl: 'assets/images/login.png',
+      
       pdfUrl: 'url',
     ),
   ],
