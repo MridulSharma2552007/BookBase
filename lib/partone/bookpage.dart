@@ -1,5 +1,6 @@
-import 'package:book_base/bookcontainer/book_container.dart';
+import 'package:book_base/widgets/book_container.dart';
 import 'package:book_base/colors/app_colors.dart';
+import 'package:book_base/widgets/pyqcontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -68,7 +69,7 @@ class _BookpageState extends State<Bookpage> {
                     ],
                   ),
                 )
-              : Center(child: CircularProgressIndicator()),
+              : Pyqcontainer(),
         ],
       ),
     );
