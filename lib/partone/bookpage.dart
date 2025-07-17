@@ -1,3 +1,4 @@
+import 'package:book_base/bookdata/pyqdata.dart';
 import 'package:book_base/widgets/book_container.dart';
 import 'package:book_base/colors/app_colors.dart';
 import 'package:book_base/widgets/pyqcontainer.dart';
@@ -69,7 +70,57 @@ class _BookpageState extends State<Bookpage> {
                     ],
                   ),
                 )
-              : Pyqcontainer(),
+              : Expanded(
+                  child: SingleChildScrollView(
+                      scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:
+                          pyqData[sem]?.entries.map((subjectEntry) {
+                            final subject = subjectEntry.key;
+                            final pyqList = subjectEntry.value;
+
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 16,
+                                    vertical: 10,
+                                  ),
+                                  child: Text(
+                                    subject,
+                                    style: GoogleFonts.plusJakartaSans(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.secondary,
+                                    ),
+                                  ),
+                                ),
+                                ...pyqList.map(
+                                  (pyq) => Pyqcontainer(
+                                    imagePath: pyq.image.isNotEmpty
+                                        ? pyq.image
+                                        : 'assets/images/placeholder.png', // fallback if image is empty
+                                    title: pyq.title,
+                                    description: "Tap to view/download",
+                                  ),
+                                ),
+                              ],
+                            );
+                          }).toList() ??
+                          [
+                            const Padding(
+                              padding: EdgeInsets.all(16),
+                              child: Text(
+                                "No question papers available for this semester.",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ),
+                          ],
+                    ),
+                  ),
+                ),
         ],
       ),
     );
